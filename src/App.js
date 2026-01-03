@@ -193,16 +193,23 @@ const Contact = () => (
       <p className="text-muted contact-desc">
         We are currently looking for deployment partners. Contact us to get access to the Alpha build or discuss custom integrations.
       </p>
-      <form>
+      
+      {/* PASTE YOUR FORMSPREE LINK INSIDE THE action="" BELOW */}
+      <form action="https://formspree.io/f/mvzgwwpz" method="POST">
+        
         <div className="form-group">
           <label>Email Address</label>
-          <input type="email" className="input-mock" placeholder="partner@company.com" />
+          {/* Added name="email" below so Formspree recognizes it */}
+          <input type="email" className="input-mock" placeholder="partner@company.com" name="email" required />
         </div>
+        
         <div className="form-group">
           <label>Message</label>
-          <textarea className="input-mock" rows="3" placeholder="Interested in integrating Helix..."></textarea>
+          {/* Added name="message" below */}
+          <textarea className="input-mock" rows="3" placeholder="Interested in integrating Helix..." name="message" required></textarea>
         </div>
-        <button type="button" className="btn-primary full-width">Send Inquiry</button>
+        
+        <button type="submit" className="btn-primary full-width">Send Inquiry</button>
       </form>
     </div>
   </section>
