@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
+import { motion } from 'framer-motion'; // <--- Added animation library
 
-// --- DATA CONFIGURATION (Easy to update for Roadmap) ---
+// --- DATA CONFIGURATION ---
 
 const FEATURE_LIST = [
   {
@@ -60,13 +61,13 @@ const ROADMAP_DATA = [
   { phase: "Phase 3", module: "Map Integration", desc: "E-Map view with camera icons and visual status indicators.", type: "research" },
 ];
 
-// --- SUB-COMPONENTS ---
+// --- COMPONENTS ---
 
 const Header = () => (
   <header>
     <div className="logo">
       <div className="logo-icon"></div>
-      Helix
+      SD ViMaSo
     </div>
     <nav>
       <ul>
@@ -81,19 +82,53 @@ const Header = () => (
 
 const Hero = () => (
   <section className="hero">
-    <div className="panel hero-content">
-      <h1 className="heading-hero">Next Gen Video Management for Enterprise</h1>
-      <p className="text-muted hero-desc">
-        A lightweight, standards-based ONVIF Video Management System (VMS). 
-        Built on modern Qt architecture for cross-platform performance and reliability.
-      </p>
-      <div className="hero-actions">
-        <a href="#roadmap" className="btn-primary">View Roadmap</a>
-        <a href="#features" className="btn-secondary">Learn More</a>
-      </div>
+    {/* VIDEO BACKGROUND CONTAINER */}
+    <div className="video-bg">
+      <video autoPlay loop muted playsInline>
+        {/* Using a tech-themed abstract video. You can replace this src with your own file later */}
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-white-lines-black-background-2989-large.mp4" type="video/mp4" />
+      </video>
+      <div className="overlay"></div>
     </div>
 
-    <div className="hero-mockup panel">
+    <div className="panel hero-content">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h1 className="heading-hero">Next Gen Video Management for Enterprise</h1>
+      </motion.div>
+      
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+      >
+        <p className="text-muted hero-desc">
+          A lightweight, standards-based ONVIF Video Management System (VMS). 
+          Built on modern Qt architecture for cross-platform performance and reliability.
+        </p>
+      </motion.div>
+      
+      <motion.div 
+        className="hero-actions"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+      >
+        <a href="#roadmap" className="btn-primary">View Roadmap</a>
+        <a href="#features" className="btn-secondary">Learn More</a>
+      </motion.div>
+    </div>
+
+    <motion.div 
+      className="hero-mockup panel"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
       <div style={{position: 'relative'}}>
         <img src="https://picsum.photos/seed/sdvimaso1/1000/500.jpg" alt="App Interface Mockup" />
         <div className="recording-overlay">
@@ -104,22 +139,37 @@ const Hero = () => (
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   </section>
 );
 
 const Features = () => (
   <section id="features" className="section-container">
-    <h2 className="heading-section">Core Capabilities</h2>
-    <p className="text-muted">Designed for seamless integration with IP camera infrastructure.</p>
+    <motion.div 
+      className="section-header"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <h2 className="heading-section">Core Capabilities</h2>
+      <p className="text-muted">Designed for seamless integration with IP camera infrastructure.</p>
+    </motion.div>
 
     <div className="features-grid">
       {FEATURE_LIST.map((feature, index) => (
-        <div key={index} className="panel feature-card">
+        <motion.div 
+          key={index} 
+          className="panel feature-card"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1, duration: 0.5 }} // Stagger effect
+        >
           <div className="feature-icon">{feature.icon}</div>
           <h3>{feature.title}</h3>
           <p className="text-muted">{feature.desc}</p>
-        </div>
+        </motion.div>
       ))}
     </div>
   </section>
@@ -137,10 +187,23 @@ const Roadmap = () => {
 
   return (
     <section id="roadmap" className="section-container">
-      <h2 className="heading-section">Product Roadmap & Features</h2>
-      <p className="text-muted">Strategic development plan based on partner feedback and market standards.</p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="heading-section">Product Roadmap & Features</h2>
+        <p className="text-muted">Strategic development plan based on partner feedback and market standards.</p>
+      </motion.div>
       
-      <div className="panel roadmap-container">
+      <motion.div 
+        className="panel roadmap-container"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <table className="data-table">
           <thead>
             <tr>
@@ -159,14 +222,20 @@ const Roadmap = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </motion.div>
     </section>
   );
 };
 
 const Tech = () => (
   <section id="tech" className="section-container">
-    <div className="panel tech-stats">
+    <motion.div 
+      className="panel tech-stats"
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="stat-item">
         <div className="stat-label">Qt 6</div>
         <div className="text-muted">Core Framework</div>
@@ -182,36 +251,35 @@ const Tech = () => (
         <div className="text-muted">Profile S / G</div>
         <div className="progress-mock"><div className="progress-fill" style={{width: '80%'}}></div></div>
       </div>
-    </div>
+    </motion.div>
   </section>
 );
 
 const Contact = () => (
   <section className="section-container" style={{textAlign: 'center'}}>
-    <div className="panel contact-form">
+    <motion.div 
+      className="panel contact-form"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
       <h2>Partner With Us</h2>
       <p className="text-muted contact-desc">
         We are currently looking for deployment partners. Contact us to get access to the Alpha build or discuss custom integrations.
       </p>
-      
-      {/* PASTE YOUR FORMSPREE LINK INSIDE THE action="" BELOW */}
-      <form action="https://formspree.io/f/mvzgwwpz" method="POST">
-        
+      <form action="PASTE_YOUR_FORMSPREE_LINK_HERE" method="POST">
         <div className="form-group">
           <label>Email Address</label>
-          {/* Added name="email" below so Formspree recognizes it */}
           <input type="email" className="input-mock" placeholder="partner@company.com" name="email" required />
         </div>
-        
         <div className="form-group">
           <label>Message</label>
-          {/* Added name="message" below */}
-          <textarea className="input-mock" rows="3" placeholder="Interested in integrating Helix..." name="message" required></textarea>
+          <textarea className="input-mock" rows="3" placeholder="Interested in integrating SD ViMaSo..." name="message" required></textarea>
         </div>
-        
         <button type="submit" className="btn-primary full-width">Send Inquiry</button>
       </form>
-    </div>
+    </motion.div>
   </section>
 );
 
@@ -223,13 +291,11 @@ const Footer = () => (
       <a href="#">Documentation</a>
     </div>
     <p className="text-muted copyright">
-      &copy; 2026 Helix. All rights reserved.<br/>
+      &copy; 2023 SD ViMaSo. All rights reserved.<br/>
       Built with Qt technology.
     </p>
   </footer>
 );
-
-// --- MAIN APP COMPONENT ---
 
 function App() {
   return (
