@@ -268,7 +268,7 @@ const Contact = () => (
       <p className="text-muted contact-desc">
         We are currently looking for deployment partners. Contact us to get access to the Alpha build or discuss custom integrations.
       </p>
-      <form action="PASTE_YOUR_FORMSPREE_LINK_HERE" method="POST">
+      <form action="https://formspree.io/f/mvzgwwpz" method="POST">
         <div className="form-group">
           <label>Email Address</label>
           <input type="email" className="input-mock" placeholder="partner@company.com" name="email" required />
